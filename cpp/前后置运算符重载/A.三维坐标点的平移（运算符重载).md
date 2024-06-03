@@ -63,19 +63,19 @@ Point& operator++(Point &qian) {
     return qian;
 }
 
+// 后置递增
+Point operator++(Point &hou, int) {
+    Point temp = hou;
+    ++hou;
+    return temp;
+}
+
 // 前置递减
 Point& operator--(Point &qian) {
     qian.x--;
     qian.y--;
     qian.z--;
     return qian;
-}
-
-// 后置递增
-Point operator++(Point &hou, int) {
-    Point temp = hou;
-    ++hou;
-    return temp;
 }
 
 // 后置递减
@@ -88,27 +88,30 @@ Point operator--(Point &hou, int) {
 int main() {
     int x, y, z;
     cin >> x >> y >> z;
-    Point p(x, y, z);
+    Point p1(x, y, z), p2;
 
-    Point qian = p, hou = qian++;
-    qian.show();
-    hou.show();
+    // 后置++
+    p2 = p1++;
+    p1.show(); // 输出修改后的 p1
+    p2.show(); // 输出修改前的 p1
 
-    qian = p;
-    hou = ++qian;
-    qian.show();
-    hou.show();
+    // 恢复 p1 原始值并前置++
+    p1 = Point(x, y, z);
+    p2 = ++p1;
+    p1.show();
+    p2.show();
 
-    qian = p;
-    hou = qian--;
-    qian.show();
-    hou.show();
+    // 恢复 p1 原始值并后置--
+    p1 = Point(x, y, z);
+    p2 = p1--;
+    p1.show();
+    p2.show();
 
-    qian = p;
-    hou = --qian;
-    qian_show();
-    hou.show();
+    // 恢复 p1 原始值并前置--
+    p1 = Point(x, y, z);
+    p2 = --p1;
+    p1.show();
+    p2.show();
 
     return 0;
 }
-
